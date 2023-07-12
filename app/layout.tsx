@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import AuthProvider from './AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,13 +13,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`mx-auto max-w-7xl ` + inter.className}>
-        <div className="flex flex-row">
-          <Navbar className="sticky top-0 h-screen w-1/5" />
-          {children}
-        </div>
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body className={`mx-auto max-w-7xl ` + inter.className}>
+          <div className="flex flex-row">
+            <Navbar className="sticky top-0 h-screen w-1/5" />
+            {children}
+          </div>
+        </body>
+      </html>
+    </AuthProvider>
   )
 }
