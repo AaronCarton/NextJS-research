@@ -1,4 +1,5 @@
-import Tweet from './Tweet'
+import mongo from '@/lib/mongodb'
+import Tweet, { TweetProps } from './Tweet'
 // import { Suspense, useEffect, useState } from 'react'
 // import LoadingSpinner from '../LoadingSpinner'
 
@@ -6,9 +7,15 @@ export default async function Posts() {
   // const [posts, setPosts] = useState<any[]>([])
   // const [loading, setLoading] = useState(true)
 
-  const posts: any[] = await new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(Array.from<any>({ length: 30 }))
+  const posts: TweetProps[] = await new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      const tweets = await mongo.collection('test').find().toArray()
+      const placeholder = Array.from<any>({ length: 30 }).map((_, i) => ({
+        content: 'placeholder',
+        date: new Date(Date.now() - 1000 * 60 * 60 * 24 * (30 - i)),
+        user: { username: 'placeholder', avatar: '' },
+      }))
+      resolve([...placeholder, ...tweets] as TweetProps[])
     }, 5000)
   })
 
@@ -22,9 +29,11 @@ export default async function Posts() {
   return (
     <div>
       {/* {loading && <LoadingSpinner />} */}
-      {posts.map((p: any, i: any) => (
-        <Tweet key={i} />
-      ))}
+      {posts
+        .sort((a, b) => b.date.getTime() - a.date.getTime())
+        .map((p: TweetProps, i: any) => (
+          <Tweet key={i} tweet={p} />
+        ))}
     </div>
   )
 }
