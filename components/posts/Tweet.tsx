@@ -6,7 +6,7 @@ import Download from '~icons/mdi/tray-arrow-down'
 
 export default function Tweet() {
   return (
-    <div className="flex border-b border-zinc-800 p-4">
+    <div className="flex border-b border-zinc-800 px-4 py-3">
       <div className="flex w-full flex-row">
         <div>
           <Image

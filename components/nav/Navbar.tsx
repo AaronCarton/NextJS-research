@@ -8,9 +8,12 @@ import Messages from '~icons/mdi/email-outline'
 import Bookmarks from '~icons/mdi/bookmark-outline'
 import Profile from '~icons/mdi/account-outline'
 import More from '~icons/mdi/dots-horizontal-circle-outline'
-import LoginButton from './LoginButton'
+import ProfileCard from '../ProfileCard'
+import Link from 'next/link'
+import { getServerSession } from 'next-auth'
 
-export default function Navbar({ className }: { className?: string }) {
+export default async function Navbar({ className }: { className?: string }) {
+  const session = await getServerSession()
   return (
     <header className={`${className} flex flex-col justify-between`}>
       <div className="">
@@ -18,12 +21,12 @@ export default function Navbar({ className }: { className?: string }) {
           <Logo className="text-2xl" />
         </div>
         <div className="flex flex-col gap-1 text-xl">
-          <a href="" className="group">
+          <Link href={'/'} className="group">
             <div className="inline-flex items-center rounded-full p-3 transition-colors duration-200 group-hover:bg-zinc-900">
               <Home className="text-2xl" />
               <div className="mx-4 font-semibold">Home</div>
             </div>
-          </a>
+          </Link>
           <a href="" className="group">
             <div className="inline-flex items-center rounded-full p-3 transition-colors duration-200 group-hover:bg-zinc-900">
               <Explore className="text-2xl" />
@@ -48,22 +51,24 @@ export default function Navbar({ className }: { className?: string }) {
               <div className="mx-4">Bookmarks</div>
             </div>
           </a>
-          <a href="" className="group">
+          <Link href={`/${session?.user?.name}`} className="group">
             <div className="inline-flex items-center rounded-full p-3 transition-colors duration-200 group-hover:bg-zinc-900">
               <Profile className="text-2xl" />
               <div className="mx-4">Profile</div>
             </div>
-          </a>
+          </Link>
           <a href="" className="group">
             <div className="inline-flex items-center rounded-full p-3 transition-colors duration-200 group-hover:bg-zinc-900">
               <More className="text-2xl" />
               <div className="mx-4">More</div>
             </div>
           </a>
-          <div className="mx-5 my-3 cursor-pointer rounded-full bg-blue-500 py-3.5 text-center font-semibold">Post</div>
+          <div className="mx-5 my-3 cursor-pointer rounded-full bg-blue-500 py-3 text-center text-base font-medium">
+            Tweet
+          </div>
         </div>
       </div>
-      <LoginButton />
+      <ProfileCard />
     </header>
   )
 }
