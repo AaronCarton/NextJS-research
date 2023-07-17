@@ -1,3 +1,5 @@
+A twitter clone using NextJS' [app router](https://nextjs.org/docs/getting-started/react-essentials) & React [server components](https://nextjs.org/docs/getting-started/react-essentials)
+
 ## Getting Started
 
 First, create the `.env` file:
