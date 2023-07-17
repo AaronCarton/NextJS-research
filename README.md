@@ -1,4 +1,4 @@
-A twitter clone using NextJS' [app router](https://nextjs.org/docs/getting-started/react-essentials) & React [server components](https://nextjs.org/docs/getting-started/react-essentials)
+A twitter clone using NextJS' [app router](https://nextjs.org/docs) & React [server components](https://nextjs.org/docs/getting-started/react-essentials#server-components)
 
 ## Getting Started
 
