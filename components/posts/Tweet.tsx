@@ -4,7 +4,16 @@ import Retweet from '~icons/mdi/repeat-variant'
 import Heart from '~icons/mdi/heart-outline'
 import Download from '~icons/mdi/tray-arrow-down'
 
-export default function Tweet() {
+export interface TweetProps {
+  content: string
+  date: Date
+  user: {
+    username: string
+    avatar: string
+  }
+}
+
+export default function Tweet({ tweet: { content, user, date } }: { tweet: TweetProps }) {
   return (
     <div className="flex border-b border-zinc-800 px-4 py-3">
       <div className="flex w-full flex-row">
@@ -19,12 +28,12 @@ export default function Tweet() {
         </div>
         <div className="ml-3 flex w-3/4 flex-col">
           <div className="flex flex-row items-center gap-1 align-middle">
-            <span className="text-[0.95rem] font-semibold leading-none">Username</span>
-            <span className="text-sm text-zinc-500">@username</span>
-            <span className="text-sm text-zinc-500">Time</span>
+            <span className="text-[0.95rem] font-semibold leading-none">{user.username}</span>
+            <span className="text-sm text-zinc-500">@{user.username.toLowerCase()}</span>
+            <span className="text-sm text-zinc-500">{date.toLocaleDateString()}</span>
           </div>
           <div>
-            <span className="text-[0.9rem]  leading-none">Content</span>
+            <span className="text-[0.9rem]  leading-none">{content}</span>
           </div>
           <div className="mt-3 flex grow flex-row justify-between">
             <div className="flex flex-row items-center gap-1">

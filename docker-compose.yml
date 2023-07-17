@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  mongodb:
+    container_name: NextApp_mongodb
+    image: mongo
+    restart: on-failure:5
+    ports:
+      - 27008:27017
+    environment:
+      MONGO_INITDB_DATABASE: next_app
+    volumes:
+      - NextApp_MongoDB_Volume:/data/db
+volumes:
+  NextApp_MongoDB_Volume:
+    name: NextApp_MongoDB

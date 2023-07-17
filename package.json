@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3005",
     "build": "next build",
     "start": "next start -p 8080",
     "lint": "next lint"
@@ -20,6 +20,7 @@
     "clsx": "^1.2.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
+    "mongodb": "5.7",
     "next": "13.4.9",
     "next-auth": "^4.22.1",
     "postcss": "8.4.25",
