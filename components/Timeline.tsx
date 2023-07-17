@@ -1,6 +1,6 @@
 import LoadingSpinner from './LoadingSpinner'
 import Posts from './posts/Posts'
-import TweetBox from './TweetBox'
+import TweetBox from './tweet/TweetBox'
 import { Suspense } from 'react'
 
 export default function Timeline() {

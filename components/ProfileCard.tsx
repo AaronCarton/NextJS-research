@@ -7,6 +7,7 @@ import { LoginButton, LogoutButton } from './login/buttons'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
+import default_avatar from '@/assets/default_avatar.webp'
 
 export default async function Button() {
   return (await getServerSession()) ? <ProfileCard /> : <LoginButton />
@@ -20,10 +21,7 @@ export async function ProfileCard() {
         <Link className="flex flex-row" href={`/${session?.user?.name}`}>
           <div>
             <Image
-              src={
-                session?.user?.image ??
-                'https://cdn.discordapp.com/avatars/277771753952903168/2b8f6ccd8701030612e925b470a3e246.webp?size=64'
-              }
+              src={session?.user?.image ?? default_avatar}
               alt="Profile Picture"
               width={40}
               height={40}

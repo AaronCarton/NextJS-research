@@ -3,13 +3,14 @@ import Replies from '~icons/mdi/reply'
 import Retweet from '~icons/mdi/repeat-variant'
 import Heart from '~icons/mdi/heart-outline'
 import Download from '~icons/mdi/tray-arrow-down'
+import default_avatar from '@/assets/default_avatar.webp'
 
 export interface TweetProps {
   content: string
   date: Date
   user: {
     username: string
-    avatar: string
+    avatar: string | undefined
   }
 }
 
@@ -19,7 +20,7 @@ export default function Tweet({ tweet: { content, user, date } }: { tweet: Tweet
       <div className="flex w-full flex-row">
         <div>
           <Image
-            src={'https://cdn.discordapp.com/avatars/277771753952903168/2b8f6ccd8701030612e925b470a3e246.webp?size=64'}
+            src={user.avatar ?? default_avatar}
             alt="Profile Picture"
             width={40}
             height={40}

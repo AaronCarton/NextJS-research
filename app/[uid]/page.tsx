@@ -1,10 +1,11 @@
 import LoadingSpinner from '@/components/LoadingSpinner'
 import Posts from '@/components/posts/Posts'
-import TrendsList from '@/components/trends/TrendsList'
+import Trends from '@/components/trends/TrendsBox'
 import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import { Suspense } from 'react'
 import Back from '~icons/mdi/arrow-left'
+import default_avatar from '@/assets/default_avatar.webp'
 
 export default async function ProfilePage() {
   const session = await getServerSession()
@@ -32,9 +33,7 @@ export default async function ProfilePage() {
           />
           <Image
             className="z-10 mx-5 h-36 w-36 translate-y-1/2  self-end rounded-full border-4 border-black"
-            src={
-              session?.user?.image ?? 'https://pbs.twimg.com/profile_images/1386510628966342658/gTtWGwxz_400x400.jpg'
-            }
+            src={session?.user?.image ?? default_avatar}
             height={144}
             width={144}
             alt="Profile picture"
@@ -78,10 +77,10 @@ export default async function ProfilePage() {
         </div>
         {/* Tweets */}
         <Suspense fallback={<LoadingSpinner />}>
-          <Posts />
+          <Posts user={session?.user?.name} />
         </Suspense>
       </div>
-      <TrendsList />
+      <Trends />
     </main>
   )
 }

@@ -1,15 +1,16 @@
 import Image from 'next/image'
-import { Textarea } from './ui/textarea'
+import { Textarea } from '../ui/textarea'
 import mongo from '@/lib/mongodb'
 import { getServerSession } from 'next-auth'
 import { revalidatePath } from 'next/cache'
+import default_avatar from '@/assets/default_avatar.webp'
 
-export default function TweetBox() {
+export default async function TweetBox() {
   const session = await getServerSession()
   async function postTweet(formData: FormData) {
     'use server'
     console.log(formData)
-    await mongo.collection('test').insertOne({
+    await mongo.collection('tweets').insertOne({
       content: formData.get('tweet'),
       date: new Date(),
       user: { username: session?.user?.name, avatar: session?.user?.image },
@@ -24,10 +25,7 @@ export default function TweetBox() {
         <div className="flex flex-row">
           <div>
             <Image
-              src={
-                session?.user?.image ??
-                'https://cdn.discordapp.com/avatars/277771753952903168/2b8f6ccd8701030612e925b470a3e246.webp?size=64'
-              }
+              src={session?.user?.image ?? default_avatar}
               alt="Profile Picture"
               width={40}
               height={40}

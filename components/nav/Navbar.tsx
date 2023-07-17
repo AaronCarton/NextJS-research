@@ -27,25 +27,25 @@ export default async function Navbar({ className }: { className?: string }) {
               <div className="mx-4 font-semibold">Home</div>
             </div>
           </Link>
-          <a href="" className="group">
+          <a href="/" className="group">
             <div className="inline-flex items-center rounded-full p-3 transition-colors duration-200 group-hover:bg-zinc-900">
               <Explore className="text-2xl" />
               <div className="mx-4">Explore</div>
             </div>
           </a>
-          <a href="" className="group">
+          <a href="/" className="group">
             <div className="inline-flex items-center rounded-full p-3 transition-colors duration-200 group-hover:bg-zinc-900">
               <Notifications className="text-2xl" />
               <div className="mx-4">Notifications</div>
             </div>
           </a>
-          <a href="" className="group">
+          <a href="/" className="group">
             <div className="inline-flex items-center rounded-full p-3 transition-colors duration-200 group-hover:bg-zinc-900">
               <Messages className="text-2xl" />
               <div className="mx-4">Messages</div>
             </div>
           </a>
-          <a href="" className="group">
+          <a href="/" className="group">
             <div className="inline-flex items-center rounded-full p-3 transition-colors duration-200 group-hover:bg-zinc-900">
               <Bookmarks className="text-2xl" />
               <div className="mx-4">Bookmarks</div>
@@ -57,7 +57,7 @@ export default async function Navbar({ className }: { className?: string }) {
               <div className="mx-4">Profile</div>
             </div>
           </Link>
-          <a href="" className="group">
+          <a href="/" className="group">
             <div className="inline-flex items-center rounded-full p-3 transition-colors duration-200 group-hover:bg-zinc-900">
               <More className="text-2xl" />
               <div className="mx-4">More</div>

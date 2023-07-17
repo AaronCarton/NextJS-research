@@ -1,4 +1,6 @@
 import TrendItem, { Trend } from '@/components/trends/TrendItem'
+import { Suspense } from 'react'
+import LoadingSpinner from '../LoadingSpinner'
 
 const trends: Trend[] = [
   {
@@ -23,19 +25,11 @@ const trends: Trend[] = [
   },
 ]
 
-export default function TrendsList() {
-  return (
-    <div className="min-h-full grow">
-      <div className="m-10 rounded-xl bg-zinc-900 px-4 py-3">
-        <div>
-          <span className="text-xl font-bold">Trends for you</span>
-        </div>
-        <div>
-          {trends.map((trend) => (
-            <TrendItem key={trend.name} trend={trend} />
-          ))}
-        </div>
-      </div>
-    </div>
-  )
+export default async function TrendsList() {
+  const trendList: Trend[] = await new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(trends)
+    }, 6000)
+  })
+  return trendList.map((trend) => <TrendItem key={trend.name} trend={trend} />)
 }
